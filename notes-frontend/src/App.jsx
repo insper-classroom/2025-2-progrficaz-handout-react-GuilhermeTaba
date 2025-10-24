@@ -1,20 +1,14 @@
 import Note from './components/Note';
 import './App.css';
+import axios from "axios";
+import { useState } from "react";
 
 function App() {
-    const notes = [
-    {
-      id : 1,
-      title: "Receita de miojo",
-      content:
-        "Bata com um martelo antes de abrir o pacote. Misture o tempero, coloque em uma vasilha e aproveite seu snack :)",
-    },
-    { id :2, 
-      title: "Sorvete de banana",
-      content: "Coloque a banana no congelador e espere.",
-    },
-  ];
-    return (
+  const [notes, setNotes] = useState([]); // Remova o array de notes que existia na versão anterior
+  axios.get("http://localhost:8000/api/notes/").then((res) => {console.log(res.data);setNotes(res.data)});
+
+  console.log(notes)
+  return (
     <>
       {notes.map((note) => (
         <Note key={`note__${note.id}`} title={note.title}>{note.content}</Note>
