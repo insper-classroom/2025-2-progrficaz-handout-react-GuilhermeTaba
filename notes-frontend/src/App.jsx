@@ -26,7 +26,9 @@ function App() {
       <Formulario loadNotes={carregaNotas}/>
       <div className="card-container">
       {notes.map((note) => (
-        <Note key={`note__${note.id}`} title={note.title}>{note.content}</Note>
+            <Note key={`note__${note.id}`} id={note.id} title={note.title}>
+              {note.content}
+            </Note>
       ))}
       
       </div>
